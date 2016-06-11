@@ -10350,7 +10350,7 @@ return jQuery;
 
   window.PER_PAGE = 20;
 
-  window.CAROUSEL_TIMEOUT_MILLISECONDS = 1000;
+  window.CAROUSEL_TIMEOUT_MILLISECONDS = 5000;
 
   window.CAROUSEL_PER_PAGE = 20;
 
