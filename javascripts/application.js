@@ -11839,10 +11839,10 @@ return window.noty;
             } else {
               $('#preloader').hide();
               $.each(data.photos.photo, function(i, item) {
-                var bigImageSrc, src;
+                var flickrUrl, src;
                 src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
-                bigImageSrc = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_c.jpg';
-                return $('#images').append($('<a>').attr('href', bigImageSrc).attr('target', '_blank').append($('<img/>').attr('src', src).attr('class', 'flickr_image')));
+                flickrUrl = 'https://www.flickr.com/photos/' + item.owner + '/' + item.id;
+                return $('#images').append($('<a>').attr('href', flickrUrl).attr('target', '_blank').append($('<img/>').attr('src', src).attr('class', 'flickr_image')));
               });
               window.block = false;
               if ($("body").height() <= $(window).height()) {
@@ -11921,12 +11921,12 @@ return window.noty;
               return notify(JSON.stringify(["Problem with data", data]));
             } else {
               $.each(data.photos.photo, function(i, item) {
-                var bigImageSrc, src;
+                var flickrUrl, src;
                 src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
-                bigImageSrc = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_c.jpg';
+                flickrUrl = 'https://www.flickr.com/photos/' + item.owner + '/' + item.id;
                 return imgs.push({
                   src: src,
-                  bigImageSrc: bigImageSrc
+                  bigImageSrc: flickrUrl
                 });
               });
               return initCarousel();
