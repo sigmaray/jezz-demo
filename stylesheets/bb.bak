@@ -1,0 +1,37 @@
+html, body, #carousel_page {
+    height: 100%;
+}
+
+body {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  /*height: 100%;*/
+  // overflow: hidden;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+#images a {
+  margin: 10px;
+}
+
+
+
+#carousel_page {
+  #header {
+    height: 30%;
+  }
+
+  #rest {
+    height: 70%;
+
+    #img_container {
+      img {
+        max-height: 400px;
+      }
+    }
+  }
+}

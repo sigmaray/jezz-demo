@@ -1,9 +1,13 @@
+/* line 1, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 body {
   text-align: center;
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
-.flickr_image {
-  margin: 20px;
-}
+/* line 8, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#hint_links a {
+  margin: 0 8px; }
+
+/* line 14, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#images a {
+  margin: 10px; }
