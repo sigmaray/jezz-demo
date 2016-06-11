@@ -1,6 +1,6 @@
 (function() {
   $(function() {
-    var addPics, doStuff, downloadPics, handleEvents, imgs, initCarousel, oldScrollPos, page, scrollPos;
+    var addPics, calculateImageMaxHeight, doStuff, downloadPics, handleEvents, imgs, initCarousel, oldScrollPos, page, scrollPos;
     if ($('#carousel_page').length) {
       page = 1;
       scrollPos = 0;
@@ -25,11 +25,11 @@
             } else {
               $.each(data.photos.photo, function(i, item) {
                 var flickrUrl, src;
-                src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
+                src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_h.jpg';
                 flickrUrl = 'https://www.flickr.com/photos/' + item.owner + '/' + item.id;
                 return imgs.push({
                   src: src,
-                  bigImageSrc: flickrUrl
+                  flickrUrl: flickrUrl
                 });
               });
               return initCarousel();
@@ -66,13 +66,21 @@
           return doStuff();
         });
       };
+      calculateImageMaxHeight = function() {
+        var mh;
+        mh = Math.floor($(document).height() / 100) * 75;
+        if (mh > 300) {
+          mh -= 30;
+        }
+        return mh;
+      };
       initCarousel = function() {
         var i, searchText, showImageAndStartTimer;
         i = 0;
         searchText = $('#searchInput').val();
         showImageAndStartTimer = function() {
           $('#img_container').html('');
-          $('#img_container').append($('<img>').attr('src', imgs[i].bigImageSrc));
+          $('#img_container').append($('<a>').attr('href', imgs[i].flickrUrl).attr('target', '_blank').append($('<img/>').attr('src', imgs[i].src).attr('style', 'max-height: ' + calculateImageMaxHeight() + 'px;')));
           i++;
           if (i < imgs.length) {
             return window.tmout = window.setTimeout(showImageAndStartTimer, CAROUSEL_TIMEOUT_MILLISECONDS);

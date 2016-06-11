@@ -1,32 +1,39 @@
 /* line 1, /home/patrick/projects/jezz/source/stylesheets/application.scss */
-body {
-  text-align: center;
+html, body {
   padding: 0;
   margin: 0; }
 
-/* line 8, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 6, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+body {
+  text-align: center; }
+
+/* line 11, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #menu a {
   margin: 0 8px; }
 
-/* line 14, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 17, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #hint_links a {
   margin: 0 15px; }
 
-/* line 20, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 23, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #preloader {
   margin-top: 15px 0; }
 
-/* line 25, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 28, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #index_page #images a {
   display: inline-block;
   margin: 10px; }
 
-/* line 32, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 34, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+body.carousel, #carousel_page {
+  height: 100%; }
+
+/* line 39, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #carousel_page #header {
-  height: 30%; }
-/* line 36, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+  height: 25%; }
+/* line 43, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #carousel_page #rest {
-  height: 70%; }
-  /* line 40, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+  height: 75%; }
+  /* line 47, /home/patrick/projects/jezz/source/stylesheets/application.scss */
   #carousel_page #rest #img_container img {
     max-height: 400px; }
