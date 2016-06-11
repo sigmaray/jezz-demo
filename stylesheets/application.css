@@ -8,19 +8,25 @@ body {
 #menu a {
   margin: 0 8px; }
 
-/* line 15, /home/patrick/projects/jezz/source/stylesheets/application.scss */
-#index_page #hint_links a {
-  margin: 0 8px; }
-/* line 21, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 14, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#hint_links a {
+  margin: 0 15px; }
+
+/* line 20, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#preloader {
+  margin-top: 15px 0; }
+
+/* line 25, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #index_page #images a {
+  display: inline-block;
   margin: 10px; }
 
-/* line 27, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 32, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #carousel_page #header {
   height: 30%; }
-/* line 31, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+/* line 36, /home/patrick/projects/jezz/source/stylesheets/application.scss */
 #carousel_page #rest {
   height: 70%; }
-  /* line 35, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+  /* line 40, /home/patrick/projects/jezz/source/stylesheets/application.scss */
   #carousel_page #rest #img_container img {
     max-height: 400px; }

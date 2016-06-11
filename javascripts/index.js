@@ -1,11 +1,11 @@
 (function() {
   $(function() {
-    var addPics, doStuff, downloadPics, handleEvents, imgs, initCarousel, oldScrollPos, page, scrollPos;
-    if ($('#carousel_page').length) {
+    var addPics, doStuff, downloadPics, handleEvents, oldScrollPos, page, scrollPos;
+    if ($('#index_page').length) {
       page = 1;
+      window.block = false;
       scrollPos = 0;
       oldScrollPos = 0;
-      imgs = [];
       downloadPics = function(pic, page, per_page) {
         var url;
         if (page == null) {
@@ -14,8 +14,9 @@
         if (per_page == null) {
           per_page = PER_PAGE;
         }
-        imgs = [];
         url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + API_KEY + '&text=' + pic + '&safe_search=1&page=' + page + '&per_page=' + per_page;
+        window.block = true;
+        $('#preloader').show();
         return $.ajax({
           dataType: "json",
           url: url + '&format=json&jsoncallback=?',
@@ -23,16 +24,17 @@
             if (data["photos"] == null) {
               return notify(JSON.stringify(["Problem with data", data]));
             } else {
+              $('#preloader').hide();
               $.each(data.photos.photo, function(i, item) {
                 var bigImageSrc, src;
                 src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
                 bigImageSrc = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_c.jpg';
-                return imgs.push({
-                  src: src,
-                  bigImageSrc: bigImageSrc
-                });
+                return $('#images').append($('<a>').attr('href', bigImageSrc).attr('target', '_blank').append($('<img/>').attr('src', src).attr('class', 'flickr_image')));
               });
-              return initCarousel();
+              window.block = false;
+              if ($("body").height() <= $(window).height()) {
+                return addPics();
+              }
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -41,48 +43,38 @@
         });
       };
       addPics = function() {
-        downloadPics($('#searchInput').val(), page, CAROUSEL_PER_PAGE);
+        downloadPics($('#searchInput').val(), page);
         return page++;
       };
-      doStuff = function(e) {
-        if (typeof tmout !== "undefined" && tmout !== null) {
-          window.clearTimeout(tmout);
-        }
-        imgs = [];
+      doStuff = function() {
+        $('#images').html('');
         page = 0;
         return addPics();
       };
       handleEvents = function() {
-        $('#goButton').click(function() {
-          return doStuff();
-        });
         $('#searchInput').keypress(function(e) {
           if (e.which === 13) {
             return doStuff();
           }
         });
-        return $('#hint_links  a').click(function() {
+        $('#goButton').click(function() {
+          return doStuff();
+        });
+        $('#hint_links  a').click(function() {
           $('#searchInput').val($(this).text().trim());
           return doStuff();
         });
-      };
-      initCarousel = function() {
-        var i, searchText, showImageAndStartTimer;
-        i = 0;
-        searchText = $('#searchInput').val();
-        showImageAndStartTimer = function() {
-          $('#img_container').html('');
-          $('#img_container').append($('<img>').attr('src', imgs[i].bigImageSrc));
-          i++;
-          if (i < imgs.length) {
-            return window.tmout = window.setTimeout(showImageAndStartTimer, CAROUSEL_TIMEOUT_MILLISECONDS);
-          } else {
-            page++;
-            imgs = [];
-            return downloadPics(searchText, page);
+        return $(window).scroll(function() {
+          scrollPos = $(window).scrollTop();
+          if (scrollPos > oldScrollPos) {
+            if (($(document).height() - $(window).height() - $(window).scrollTop()) < INFINITE_SCROLL_OFFSET) {
+              if (!window.block) {
+                addPics();
+              }
+            }
           }
-        };
-        return showImageAndStartTimer();
+          return oldScrollPos = scrollPos;
+        });
       };
       handleEvents();
       return addPics();
