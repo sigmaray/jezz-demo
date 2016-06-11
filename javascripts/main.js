@@ -1,12 +1,6 @@
 (function() {
-  var API_KEY, PER_PAGE;
-
-  API_KEY = '4cc2a6e2419deebfe86eca026cfda157';
-
-  PER_PAGE = 20;
-
   $(function() {
-    var addPics, downloadPics, handleEvents, oldScrollPos, page, scrollPos;
+    var addPics, doStuff, downloadPics, handleEvents, oldScrollPos, page, scrollPos;
     if ($('#index_page').length) {
       page = 1;
       window.block = false;
@@ -39,13 +33,12 @@
         downloadPics($('#searchInput').val(), page);
         return page++;
       };
+      doStuff = function() {
+        $('#images').html('');
+        page = 0;
+        return addPics();
+      };
       handleEvents = function() {
-        var doStuff;
-        doStuff = function() {
-          $('#images').html('');
-          page = 0;
-          return addPics();
-        };
         $('#searchInput').keypress(function(e) {
           if (e.which === 13) {
             return doStuff();

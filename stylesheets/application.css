@@ -5,9 +5,22 @@ body {
   margin: 0; }
 
 /* line 8, /home/patrick/projects/jezz/source/stylesheets/application.scss */
-#hint_links a {
+#menu a {
   margin: 0 8px; }
 
-/* line 14, /home/patrick/projects/jezz/source/stylesheets/application.scss */
-#images a {
+/* line 15, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#index_page #hint_links a {
+  margin: 0 8px; }
+/* line 21, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#index_page #images a {
   margin: 10px; }
+
+/* line 27, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#carousel_page #header {
+  height: 30%; }
+/* line 31, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+#carousel_page #rest {
+  height: 70%; }
+  /* line 35, /home/patrick/projects/jezz/source/stylesheets/application.scss */
+  #carousel_page #rest #img_container img {
+    max-height: 400px; }
